@@ -13,6 +13,7 @@ pub enum TransactionPartner {
     Fragment(TransactionPartnerFragment),
     User(TransactionPartnerUser),
     TelegramAds,
+    TelegramApi(TransactionPartnerTelegramApi),
     Other,
 }
 
@@ -38,4 +39,14 @@ pub struct TransactionPartnerUser {
 
     /// Information about the paid media bought by the user.
     pub paid_media: Option<Vec<PaidMedia>>,
+}
+
+/// Describes a transaction with payment for paid broadcasting.
+#[derive(Clone, Debug)]
+#[derive(PartialEq, Eq, Hash)]
+#[derive(Serialize, Deserialize)]
+pub struct TransactionPartnerTelegramApi {
+    /// The number of successful requests that exceeded regular limits and were
+    /// therefore billed
+    pub request_count: u32,
 }
